@@ -21,7 +21,7 @@ public class UserService {
 	
 	public User findById(Long id) throws ResourceNotFoundException {
 		User user = this.userRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("User not found"));
+				.orElseThrow(() -> new ResourceNotFoundException(String.format("User with id %d not found", id)));
 		return user;
 	}
 	
@@ -31,7 +31,7 @@ public class UserService {
 	
 	public User update(Long id, User newData) throws ResourceNotFoundException {
 		User user = this.userRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("User not found"));
+				.orElseThrow(() -> new ResourceNotFoundException(String.format("User with id %d not found", id)));
 		
 		user.setEmail(newData.getEmail());
 		user.setName(newData.getName());
@@ -43,7 +43,7 @@ public class UserService {
 	
 	public boolean delete(Long id) throws ResourceNotFoundException {
 		User user = this.userRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("User not found"));
+				.orElseThrow(() -> new ResourceNotFoundException(String.format("User with id %d not found", id)));
 		
 		this.userRepository.delete(user);
 		return true;
