@@ -41,12 +41,12 @@ public class UserService {
 		return this.userRepository.save(user);
 	}
 	
-	public boolean delete(Long id) throws ResourceNotFoundException {
+	public String delete(Long id) throws ResourceNotFoundException {
 		User user = this.userRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException(String.format("User with id %d not found", id)));
 		
 		this.userRepository.delete(user);
-		return true;
+		return String.format("User with id %d was deleted", id);
 	}
 	
 }

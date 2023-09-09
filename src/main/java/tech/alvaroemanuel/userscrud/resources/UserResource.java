@@ -49,7 +49,7 @@ public class UserResource {
     }
 	
 	@DeleteMapping("/{id}")
-    public boolean delete(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
+    public String delete(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
       return this.userService.delete(id);
     }
 }
